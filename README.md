@@ -31,7 +31,7 @@ On which days did trading volume spike unusually high — and for which coins? W
 **Data extraction**: Python 
 OHLCV data (open, high, low, close, volume) pulled from the CoinGecko public API for 10 coins over 365 days. Two endpoints called per coin, one for price and the other for volume merged on date and coin. A retry mechanism handles free tier rate limits automatically.
 
-See: python/extract.py
+See: crypto.py
 
 **Feature engineering**: Python / pandas
 Two features engineered before loading:
@@ -45,7 +45,7 @@ Data loaded into SQL Server. Four analytical views built using T-SQL window func
   *vw_volatility_ranking -* Which coins are most volatile on a daily basis?
   *vw_monthly_performance -* How did each coin perform month by month?
 
-See: sql/
+See: sql_queries
 
 **Visualisation**: Power BI
 Two-page dashboard connected directly to SQL Server views. Star schema data model with vw_volatility_ranking serving as the coin dimension. Eight DAX measures created for KPI cards.
@@ -54,8 +54,10 @@ See: powerbi/crypto_analytics.pbix
 
 ## Skills Demonstrated
 **_Python:_** (requests, pandas) API extraction, retry logic, feature engineering
+
 **_SQL:_** window functions AVG() OVER, RANK() OVER, PARTITION BY, SQL Server views 
 Reusable analytical layer between storage and BI tool
+
 **_Power BI:_** data modelling Star schema, cross-table relationships DAXFORMAT, CALCULATE, TOPN, SELECTEDVALUE Data quality validation
 
 
